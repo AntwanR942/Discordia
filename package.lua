@@ -22,7 +22,7 @@ SOFTWARE.]]
 
 return {
 	name = 'AntwanR942/Discordia',
-	version = '2.9.2.1',
+	version = '2.9.3',
 	homepage = 'https://github.com/AntwanR942/Discordia',
 	dependencies = {
 		'creationix/coro-http@3.1.0',
