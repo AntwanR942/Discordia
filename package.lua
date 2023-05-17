@@ -21,9 +21,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.]]
 
 return {
-	name = 'AntwanR942/Discordia',
-	version = '2.9.5',
-	homepage = 'https://github.com/AntwanR942/Discordia',
+	name = 'significant-quart/Discordia',
+	version = '2.9.6',
+	homepage = 'https://github.com/significant-quart/Discordia',
 	dependencies = {
 		'creationix/coro-http@3.1.0',
 		'creationix/coro-websocket@3.1.0',
