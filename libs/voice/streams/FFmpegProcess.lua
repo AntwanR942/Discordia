@@ -1,15 +1,15 @@
 local uv = require('uv')
 
-local remove = table.remove
+local remove, reverse = table.remove, table.reverse
 local unpack = string.unpack -- luacheck: ignore
 local rep = string.rep
 local yield, resume, running = coroutine.yield, coroutine.resume, coroutine.running
 
 local function onExit() end
 
-local function insertArgs(args, add, pos)
-	for i = #add, 1, -1 do
-		table.insert(args, pos, add[i])
+local function insertArgs(t, args, start)
+	for i = 1, #args do
+		table.insert(t, (start and 1 or (#t + 1)), args[i])
 	end
 end
 
@@ -25,11 +25,12 @@ local FFmpegProcess = require('class')('FFmpegProcess')
 function FFmpegProcess:__init(path, rate, channels, pre, post)
 
 	pre = pre or {}
+	table.reverse(pre)
 	post = post or {}
 
 	local args = {'-i', path, '-ar', rate, '-ac', channels, '-f', 's16le', 'pipe:1', '-loglevel', 'warning'}
-	insertArgs(args, pre, 1)
-	insertArgs(args, post, 3 + #pre)
+	insertArgs(args, pre, true)
+	insertArgs(args, post, false)
 
 	local stdout = uv.new_pipe(false)
 
